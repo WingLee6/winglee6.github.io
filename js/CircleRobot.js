@@ -26,11 +26,6 @@ CircleRobot.prototype.IsAvailable = function (nAvailableNum) {
 // 计算圆的半径
 CircleRobot.prototype.GetState = function () {
     console.log("START CircleRobot.GetState")
-    this.pos = [
-        [, ],
-        [, ],
-        [, ]
-    ]
 
     // 结合圆的一般方程 x^2 + y^2 + ax + by + c = 0 带入三点求abc
     var strEquation1 = this.pos[0][0] ** 2 + this.pos[0][1] ** 2 + '+' + this.pos[0][0] + '*a+' + this.pos[0][1] + '*b+c=0'
