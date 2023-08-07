@@ -35,7 +35,6 @@ CircleRobot.prototype.GetState = function () {
     try {
         // 解方程
         var solutionList = nerdamer.solveEquations([strEquation1, strEquation2, strEquation3])
-        console.log(solutionList)
         var fCilcleR = 0.5 * Math.sqrt(solutionList[0][1] ** 2 +  solutionList[1][1] ** 2 -  4 * solutionList[2][1])
         var fCilclePosX = -0.5 * solutionList[0][1]
         var fCilclePosY = -0.5 * solutionList[1][1]
