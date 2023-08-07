@@ -24,8 +24,16 @@ CircleRobot.prototype.IsAvailable = function (nAvailableNum) {
 }
 
 // 计算圆的半径
+// 圆在线生成器 https://www.desmos.com/calculator?lang=zh-CN
 CircleRobot.prototype.GetState = function () {
     console.log("START CircleRobot.GetState")
+    
+    if (this.pos[0].toString() == this.pos[1].toString() & this.pos[1].toString() == this.pos[2].toString()) {
+        var fCirclePosX = this.pos[0][0]
+        var fCirclePosY = this.pos[0][1]
+        this.pos.splice(0, this.pos.length)
+        return '点圆, 圆的半径 r = 0px, 圆心坐标[' + fCirclePosX.toFixed(3) + ', ' + fCirclePosY.toFixed(3) + '], 圆的标准方程为 (x - ' + fCirclePosX + ')^2 + (y -' + fCirclePosY + ')^2 = 0'
+    }
 
     // 结合圆的一般方程 x^2 + y^2 + ax + by + c = 0 带入三点求abc
     var strEquation1 = this.pos[0][0] ** 2 + this.pos[0][1] ** 2 + '+' + this.pos[0][0] + '*a+' + this.pos[0][1] + '*b+c=0'
@@ -35,13 +43,13 @@ CircleRobot.prototype.GetState = function () {
     try {
         // 解方程
         var solutionList = nerdamer.solveEquations([strEquation1, strEquation2, strEquation3])
+        
         var fCilcleR = 0.5 * Math.sqrt(solutionList[0][1] ** 2 +  solutionList[1][1] ** 2 -  4 * solutionList[2][1])
-        var fCilclePosX = -0.5 * solutionList[0][1]
-        var fCilclePosY = -0.5 * solutionList[1][1]
-        return '圆的半径 r = ' + fCilcleR.toFixed(3) + 'px, 圆心坐标(' + fCilclePosX.toFixed(3) + ', ' + fCilclePosY.toFixed(3) + '), 圆的一般式为 x^2 + y^2 + ' + solutionList[0][1].toFixed(3) + 'x + ' + solutionList[1][1].toFixed(3) + 'y + ' + solutionList[2][1].toFixed(3) + ' = 0'
-        // 圆在线生成器 https://www.desmos.com/calculator?lang=zh-CN
+        var fCirclePosX = -0.5 * solutionList[0][1]
+        var fCirclePosY = -0.5 * solutionList[1][1]
+        return '圆的半径 r = ' + fCilcleR.toFixed(3) + 'px, 圆心坐标[' + fCirclePosX.toFixed(3) + ', ' + fCirclePosY.toFixed(3) + '], 圆的一般式为 x^2 + y^2 + ' + solutionList[0][1].toFixed(3) + 'x + ' + solutionList[1][1].toFixed(3) + 'y + ' + solutionList[2][1].toFixed(3) + ' = 0'
     } catch(err) {
-        return '圆不存在, 输入的三点分别为' + '[' + this.pos[0] + '], ' + '[' + this.pos[1] + '], ' + '[' + this.pos[2] + ']'
+        return '虚圆, 输入的三点分别为' + '[' + this.pos[0] + '], ' + '[' + this.pos[1] + '], ' + '[' + this.pos[2] + ']'
     } finally {
         this.pos.splice(0, this.pos.length)
     }
