@@ -1,12 +1,14 @@
 // 组件 - 全局组件
 app.component("globalComponent", {
     controllerAs: 'vm',
-    controller: function($scope) {
-        this.LR = new LineRobot()
-        this.CR = new CircleRobot()
+    templateUrl: './template/global/global.html',
+    controller: function($scope, $rootScope) {
+
+        // 通过父子传值
         this.RM = new RobotManager()
         
-        this.robotsOptionsObj = {
+        // 通过rootScope传值
+        $rootScope.robotsOptionsObj = {
             LineRobot: {
                 displayName: '线性机器人',
                 type: 'LineRobot',
@@ -31,8 +33,8 @@ app.component("globalComponent", {
             // 初始化 - 根据机器人库存生成列表
             var retRobotObj = this.RM.QueryRobotType()
             for (var prop in retRobotObj) {
-                this.robotsOptionsObj[prop].stock = retRobotObj[prop].stock
-                this.robotsOptionsObj[prop].isHidedAndCheckedMeasureBtn = retRobotObj[prop].onLine
+                $rootScope.robotsOptionsObj[prop].stock = retRobotObj[prop].stock
+                $rootScope.robotsOptionsObj[prop].isHidedAndCheckedMeasureBtn = retRobotObj[prop].onLine
             }
         }
 
@@ -45,8 +47,7 @@ app.component("globalComponent", {
                 this.strActiveMeasureState = ''
             }
 
-            this.LR.pos.splice(0, this.LR.pos.length)
-            this.CR.pos.splice(0, this.CR.pos.length)
+            this.RM.ClearPosRecords()
 
             if (this.strActiveMeasureState == 'distance' || this.strActiveMeasureState == 'angle') {
                 this.ChangeInfoBox(LINE_ROBOT_START_AGAIN, 'alert-danger', NO_RESULT)

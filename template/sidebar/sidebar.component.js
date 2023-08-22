@@ -4,22 +4,47 @@ app.component("sidebarComponent", {
     require: {
         global: '?^globalComponent' 
     },
+    bindings: {
+        gRm: "=",
+        // gRobotsOptionsObj: "=",
+        // gStrStateText: "=",
+        // gStrStateStyle: "=",
+        // gStrAnswerText: "=",
+        // gStrActiveMeasureState: "="
+    },
     controllerAs: 'vm',
     controller: function($scope) {
+        this.getGlobalRM
+        // this.getGlobalRobotsOptionsObj
+        // this.getGlobalStrStateText
+        // this.getGlobalStrStateStyle
+        // this.getGlobalStrAnswerText          
+        // this.getGlobalStrActiveMeasureState
+
         this.$onInit = function() {
+            
             console.log("sidebarComponent - onInit")
+            this.getGlobalRM = this.gRm
+            // this.getGlobalRobotsOptionsObj = this.gRobotsOptionsObj
+            // this.getGlobalStrStateText = this.gStrStateText
+            // this.getGlobalStrStateStyle = this.gStrStateStyle
+            // this.getGlobalStrAnswerText = this.gStrAnswerText       
+            // this.getGlobalStrActiveMeasureState = this.gStrActiveMeasureState
         }
+        
+        
         
         // 侧边栏-点击测量距离按键
         this.StartLineRobot = function(strMeasureType) {
             console.log("START StartLineRobot - strMeasureType=" + strMeasureType)
+            console.log(this.getGlobalStrAnswerText)
 
             // 记录当前在测量的内容
             this.global.strActiveMeasureState = strMeasureType
             // 状态栏更新
             this.global.ChangeInfoBox(LINE_ROBOT_START, 'alert-primary', NO_RESULT)
             // 清空历史坐标
-            this.global.LR.pos.splice(0, this.global.LR.pos.length)
+            this.getGlobalRM.LR.pos.splice(0, this.getGlobalRM.LR.pos.length)
         }
 
         // 侧边栏-点击测量三点圆半径按键
@@ -31,7 +56,7 @@ app.component("sidebarComponent", {
             // 状态栏更新
             this.global.ChangeInfoBox(CIRCLE_ROBOT_START, 'alert-primary', NO_RESULT)
             // 清空历史坐标
-            this.global.CR.pos.splice(0, this.global.CR.pos.length)
+            this.getGlobalRM.CR.pos.splice(0, this.getGlobalRM.CR.pos.length)
         }
     }
 })

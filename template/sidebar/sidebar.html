@@ -8,13 +8,13 @@
     <div class="btn-group-vertical col-12 mx-auto" role="group" aria-label="Vertical toggle button group" style="margin-bottom: 0px; border-radius: 0">
 
         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-        <label class="btn btn-outline-secondary btn-lg measure-btn-class" for="btnradio1" ng-class="{'show-measure-btn': vm.global.robotsOptionsObj.LineRobot.isHidedAndCheckedMeasureBtn}" ng-click="vm.StartLineRobot('distance')">测量两点距离</label>
+        <label class="btn btn-outline-secondary btn-lg measure-btn-class" for="btnradio1" ng-class="{'show-measure-btn': $root.robotsOptionsObj.LineRobot.isHidedAndCheckedMeasureBtn}" ng-click="vm.StartLineRobot('distance')">测量两点距离</label>
 
         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-        <label class="btn btn-outline-secondary btn-lg measure-btn-class" for="btnradio2" ng-class="{'show-measure-btn': vm.global.robotsOptionsObj.LineRobot.isHidedAndCheckedMeasureBtn}" ng-click="vm.StartLineRobot('angle')">测量两点角度</label>
+        <label class="btn btn-outline-secondary btn-lg measure-btn-class" for="btnradio2" ng-class="{'show-measure-btn': $root.robotsOptionsObj.LineRobot.isHidedAndCheckedMeasureBtn}" ng-click="vm.StartLineRobot('angle')">测量两点角度</label>
 
         <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-        <label class="btn btn-outline-secondary btn-lg measure-btn-class" for="btnradio3" ng-class="{'show-measure-btn': vm.global.robotsOptionsObj.CircleRobot.isHidedAndCheckedMeasureBtn}" ng-click="vm.StartCircleRobot('radius')">测量三点形成圆半径</label>
+        <label class="btn btn-outline-secondary btn-lg measure-btn-class" for="btnradio3" ng-class="{'show-measure-btn': $root.robotsOptionsObj.CircleRobot.isHidedAndCheckedMeasureBtn}" ng-click="vm.StartCircleRobot('radius')">测量三点形成圆半径</label>
 
         <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
         <label class="btn btn-outline-secondary btn-lg" for="btnradio4" data-bs-toggle="modal" data-bs-target="#robot-switch-modal" ng-click="vm.global.CancelMeasurement(1)">切换机器人</label>

@@ -5,27 +5,34 @@ app.component("robotManagerModalComponent", {
     require: {
         global: '?^globalComponent' 
     },
-    controller: function($scope) {
+    bindings: {
+        gRm: "=",
+    },
+    controller: function($scope, $rootScope) {
         this.strInputRobotTypeForSearch = 'CircleRobot'
         this.strInputRobotTypeForAdd = 'CircleRobot'
         this.strInputRobotStockForAdd = 9
+
+        this.getGlobalRM
         
         this.$onInit = function() {
             console.log('robotManagerModalComponent - onInit')
+            this.getGlobalRM = this.gRm
         }
 
         this.SearchRobotByType = function() {
             console.log('robotManagerModalComponent - SearchRobotByType')
             this.robotInfoForSearchList = []  
             
-            var retSearchRobotByType = this.global.RM.QueryRobotByType(this.strInputRobotTypeForSearch)[this.strInputRobotTypeForSearch]
+            var retSearchRobotByType = this.getGlobalRM.QueryRobotByType(this.strInputRobotTypeForSearch)[this.strInputRobotTypeForSearch]
             
             if (!retSearchRobotByType) {
                 alert("未查到此类机器人")
                 return
             }
-            this.global.robotsOptionsObj[this.strInputRobotTypeForSearch].stock = retSearchRobotByType.stock
-            this.robotInfoForSearchList.push(this.global.robotsOptionsObj[this.strInputRobotTypeForSearch])
+            
+            $rootScope.robotsOptionsObj[this.strInputRobotTypeForSearch].stock = retSearchRobotByType.stock
+            this.robotInfoForSearchList.push($rootScope.robotsOptionsObj[this.strInputRobotTypeForSearch])
         }
 
         this.AddRobotByTypeAndStock = function() {
@@ -33,15 +40,15 @@ app.component("robotManagerModalComponent", {
 
             this.robotInfoForAddList = []  
 
-            var retSearchRobotByType = this.global.RM.QueryRobotByType(this.strInputRobotTypeForAdd)[this.strInputRobotTypeForAdd]
+            var retSearchRobotByType = this.getGlobalRM.QueryRobotByType(this.strInputRobotTypeForAdd)[this.strInputRobotTypeForAdd]
     
             var robotObj = new Object()
             if (retSearchRobotByType) {
                 // 有该类机器人, 若有执行方法MakedRobot
-                robotObj = this.global.RM.MakeRobot(this.strInputRobotTypeForAdd, this.strInputRobotStockForAdd)[this.strInputRobotTypeForAdd]                        
+                robotObj = this.getGlobalRM.MakeRobot(this.strInputRobotTypeForAdd, this.strInputRobotStockForAdd)[this.strInputRobotTypeForAdd]                        
             } else {
                 // 若没有该机器人, 去商店注册RegisterRobot
-                robotObj = this.global.RM.RegisterRobot(this.strInputRobotTypeForAdd, this.strInputRobotStockForAdd)[this.strInputRobotTypeForAdd]
+                robotObj = this.getGlobalRM.RegisterRobot(this.strInputRobotTypeForAdd, this.strInputRobotStockForAdd)[this.strInputRobotTypeForAdd]
             }
 
             if(!robotObj) {
@@ -51,8 +58,8 @@ app.component("robotManagerModalComponent", {
                 
             alert("已为您增加" + robotObj.displayName + "库存" + this.strInputRobotStockForAdd + "台, 当前库存为" +  robotObj.stock + "台")
 
-            this.global.robotsOptionsObj[this.strInputRobotTypeForAdd].stock = robotObj.stock
-            this.robotInfoForAddList.push(this.global.robotsOptionsObj[this.strInputRobotTypeForAdd])
+            $rootScope.robotsOptionsObj[this.strInputRobotTypeForAdd].stock = robotObj.stock
+            this.robotInfoForAddList.push($rootScope.robotsOptionsObj[this.strInputRobotTypeForAdd])
         }
     }
 })

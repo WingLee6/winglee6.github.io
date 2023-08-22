@@ -5,18 +5,25 @@ app.component("robotSwitchModalComponent", {
     require: {
         global: '?^globalComponent' 
     },
-    controller: function($scope) {
+    bindings: {
+        gRm: "=",
+    },
+    controller: function($scope, $rootScope) {
+        this.getGlobalRM
+
         // 机器人选项卡信息列表
         // 每个元素包括类型、名称、选中情况，传递而来
-        this.robotsInfoList = []     
+        this.robotsInfoList = []  
 
         this.$onInit = function() {
             console.log("robotSwitchModalComponent - onInit")
+            this.getGlobalRM = this.gRm
             // 根据机器人库存生成列表
-            var retRobotObj = this.global.RM.QueryRobotType()
+            var retRobotObj = this.getGlobalRM.QueryRobotType()
+
             
             for (var prop in retRobotObj) {
-                this.robotsInfoList.push(this.global.robotsOptionsObj[prop])
+                this.robotsInfoList.push($rootScope.robotsOptionsObj[prop])
             }
         }
     }

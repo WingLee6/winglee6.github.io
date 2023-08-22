@@ -1,7 +1,10 @@
 // var ROBOT_TYPE_LINE = 0        // 线性机器人个数
 // var ROBOT_TYPE_CIRCLE = 1      // 曲线机器人个数
  
-var RobotManager = function() { }
+var RobotManager = function() {
+    this.LR = new LineRobot()
+    this.CR = new CircleRobot()
+}
 
 RobotManager.prototype.robotObj = {
     LineRobot: {
@@ -27,6 +30,12 @@ RobotManager.GetIntance = (function() {
       return instance
     }
 })()
+
+// 清空机器人的坐标点记录
+RobotManager.prototype.ClearPosRecords = function() {
+    this.LR.pos.splice(0, this.LR.pos.length)
+    this.CR.pos.splice(0, this.CR.pos.length)
+}
 
 // 创造机器人 - 增加库存
 RobotManager.prototype.MakeRobot = function(strType, nStock) { 

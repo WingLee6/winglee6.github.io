@@ -49,4 +49,5 @@ CircleRobot.prototype.GetState = function () {
     } finally {
         this.pos.splice(0, this.pos.length)
     }
-}
+}   
+
