@@ -22,7 +22,6 @@ app.component("sidebarComponent", {
         // this.getGlobalStrActiveMeasureState
 
         this.$onInit = function() {
-            
             console.log("sidebarComponent - onInit")
             this.getGlobalRM = this.gRm
             // this.getGlobalRobotsOptionsObj = this.gRobotsOptionsObj
@@ -32,12 +31,9 @@ app.component("sidebarComponent", {
             // this.getGlobalStrActiveMeasureState = this.gStrActiveMeasureState
         }
         
-        
-        
         // 侧边栏-点击测量距离按键
         this.StartLineRobot = function(strMeasureType) {
             console.log("START StartLineRobot - strMeasureType=" + strMeasureType)
-            console.log(this.getGlobalStrAnswerText)
 
             // 记录当前在测量的内容
             this.global.strActiveMeasureState = strMeasureType
