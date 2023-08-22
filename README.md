@@ -7,4 +7,4 @@
 3. 【曲线机器人】可测量任意三点形成圆形（若存在）的半径长度等服务
 
 ## 在线部署链接
-可访问: https://github.com/lukelee98/lukelee98.github.io.git
+可访问: https://lukelee98.github.io/
