@@ -1,5 +1,6 @@
 // 组件 - 父组件
 app.component("globalComponent", {
+    controllerAs: 'vm',
     templateUrl: './templates/global/global.html',
     controller: function($scope) {
 
@@ -8,6 +9,13 @@ app.component("globalComponent", {
             desc: '暂无',
             pageUrl: '#',
         };
+        
+        // 网页模板设置
+        $scope.currentPageTemplateObj = {
+            isShowedCssAnswerArea: false,
+            isShowedJsAnswerArea: false
+        }
+        
         
     }
 })

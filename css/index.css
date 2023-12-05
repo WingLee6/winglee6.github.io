@@ -16,3 +16,8 @@
     /* 移动端宽度 */
     /* max-width: 600px; */
 }
+
+/*  */
+.js-answer-output-area-class {
+    height: 200px;
+}
