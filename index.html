@@ -4,25 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" id="viewport-id" content="width=device-width, initial-scale=1.0">
     <title>前端汇总</title>
+
     <!-- bootstrap -->
     <link href="https://cdn.staticfile.org/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.7.0/angular-route.min.js"></script>
     
     <!-- anjularjs file -->
     <script type="text/javascript" src="./templates/app.js"></script>
     <script type="text/javascript" src="./templates/global/global.component.js"></script>
     <script type="text/javascript" src="./templates/navbar/navbar.component.js"></script>
-    <script type="text/javascript" src="./templates/answer/answer.component.js"></script>
+    <script type="text/javascript" src="./templates/cssAnswer/cssAnswer.component.js"></script>
     <script type="text/javascript" src="./templates/jsAnswer/jsAnswer.component.js"></script>
+    <script type="text/javascript" src="./templates/codeTemplate/codeTemplate.component.js"></script>
     <!-- 本地css -->
     <link href="./css/index.css" rel="stylesheet">
 
 </head>
 <body ng-app="mainApp">
+    
 
     <global-component></global-component>
 
+
+    <script type="text/ng-template" id="embedded.home.html">
+        <article class="col-md-10 offset-md-1 py-3">
+            <h1>前端博客</h1>
+
+            <h2>主要功能</h2>
+            展示前端语法和演示效果
+
+            <h3>远程访问</h3>
+            请访问: https://winglee6.github.io/
+        </article>
+    </script>
+  
+    
 </body>
 </html>

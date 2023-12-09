@@ -12,7 +12,7 @@ app.component("globalComponent", {
         
         // 网页模板设置
         $scope.currentPageTemplateObj = {
-            isShowedCssAnswerArea: false,
+            isShowedCssAnswerArea: true,
             isShowedJsAnswerArea: false
         }
         

@@ -1,7 +1,7 @@
 // 组件 - 答案框组件(含题目框, 演示框和代码框)
-app.component("answerComponent", {
+app.component("cssAnswerComponent", {
     controllerAs: 'vm',
-    templateUrl: './templates/answer/answer.html',
+    templateUrl: './templates/cssAnswer/cssAnswer.html',
     bindings:{
         currentQuestionObj: '=',
     },
