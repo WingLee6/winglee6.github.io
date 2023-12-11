@@ -1,0 +1,58 @@
+<!-- 实现JS代码演示模板 -->
+<article class="col-md-10 offset-md-1 py-1">
+    <!-- JS代码演示内容 -->
+    <div class="row align-items-center">
+        <!-- 左侧代码框 -->
+        <div class="col-7" >
+            <div class="card" style="min-height: 500px;">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href={{vm.jsCodeInfoObj.sourceCodeUrl}}>{{vm.jsCodeInfoObj.sourceCodeUrl}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <pre id="source-code-id">
+                    </pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧输入和输出框 -->
+        <div class="col-5">
+
+            <!-- 提示框 -->
+            <div ng-if="vm.formattedJsInfoObj.tipText.length!=0">
+                <!-- 提示框 -->
+                <div class="alert alert-primary" role="alert">
+                    {{vm.formattedJsInfoObj.tipText}}
+                </div>
+            </div>
+            
+            <!-- 输入框 -->
+            <div ng-if="vm.jsCodeInfoObj.demoParam.length!=0">
+                <!-- 输入框 -->
+                <div ng-repeat="param in vm.formattedJsInfoObj.inputParamToString">
+                    <div class="input-group p-1">
+                        <span class="input-group-text">参数 {{$index+1}}</span>
+                        <input class="form-control" aria-label="input-area" ng-model="vm.formattedJsInfoObj.inputParamToString[$index]">
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 col-6 mx-auto ">
+                    <button class="btn btn-secondary" type="button" id="button-addon" ng-click="vm.SubmitParameter()">提交</button>
+                </div>
+            </div>
+
+            <div class="border-top my-3"></div>
+
+            <!-- JS输出框 -->
+            <div class="input-group p-1" style="min-height: 200px;">
+                <span class="input-group-text">输出框</span>
+                <textarea class="form-control js-answer-output-area-class" aria-label="output-area" ng-model="vm.strOutputResult" disabled>
+                </textarea>
+            </div>
+        </div>
+    </div>
+</article>

@@ -1,4 +1,4 @@
-function Solvetion(strInput) {
+function Solution(strInput) {
   return strInput.length;
 }
   

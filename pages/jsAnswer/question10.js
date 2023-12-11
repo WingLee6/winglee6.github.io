@@ -1,8 +1,8 @@
-function Solvetion(n) {
-  var resultStr = ''
-  for (let i = 1; i <= n; i++) {
-    resultStr += i+'\n'
-  }
-  return resultStr
+function Solution(arr) {
+  var evenNumbersList = arr.filter(function (num) {
+    return num % 2 === 0;
+  });
+
+  return evenNumbersList;
 }
   

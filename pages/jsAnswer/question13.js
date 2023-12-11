@@ -1,8 +1,11 @@
-function Solvetion(n) {
-  var resultStr = ''
-  for (let i = 1; i <= n; i++) {
-    resultStr += i+'\n'
+function Solution(n) {
+  var fibonacciArr = [0, 1];
+
+  for (var i = 2; i < n; i++) {
+    var nextNumber = fibonacciArr[i - 1] + fibonacciArr[i - 2];
+    fibonacciArr.push(nextNumber);
   }
-  return resultStr
+
+  return fibonacciArr;
 }
   

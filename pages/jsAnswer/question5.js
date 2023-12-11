@@ -1,8 +1,8 @@
-function Solvetion(n) {
-  var resultStr = ''
-  for (let i = 1; i <= n; i++) {
-    resultStr += i+'\n'
-  }
-  return resultStr
+function Solution(arr) {
+  // 使用 reduce 方法计算
+  var numSum = arr.reduce(function (accumulator, currentValue) {
+    return accumulator + currentValue;
+  }, 0);
+
+  return numSum;
 }
-  

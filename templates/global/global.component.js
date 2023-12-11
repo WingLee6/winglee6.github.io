@@ -4,16 +4,22 @@ app.component("globalComponent", {
     templateUrl: './templates/global/global.html',
     controller: function($scope) {
 
-        $scope.currentQuestionObj = {
+        this.currentQuestionObj = {
             title: '未选题目',
             desc: '暂无',
             pageUrl: '#',
         };
-        
-        // 网页模板设置
-        $scope.currentPageTemplateObj = {
-            isShowedCssAnswerArea: true,
-            isShowedJsAnswerArea: false
+
+        this.jsCodeInfoObj = {
+            tipText: '',
+            // 参数输入建议实例, 通过typeof获取参数类型
+            demoParam: [],
+            // demoParam: [[1, 2, 3], [4, 5, 6]],
+            // 源码 或 js文件路径
+            sourceCode: '',
+            sourceCodeUrl: '#',
+            // 是否被读取
+            readOrNot: true
         }
         
         

@@ -3,7 +3,7 @@
     display: flex;
 }
 
-/* 代码展示框样式 */
+/* 展示框样式 */
 .page-show-card-body-class {
     background-color: var(--bs-dark-border-subtle);
 }

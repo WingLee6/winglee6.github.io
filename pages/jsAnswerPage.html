@@ -1,0 +1,14 @@
+<!-- JS问题的答案模板 -->
+
+<!-- 题目要求 -->
+<article class="col-md-10 offset-md-1 py-3">
+    <div class="card">
+        <div class="card-body">
+            <h1 id="question-title-id">{{vm.currentQuestionObj.title}}</h1>
+            <div id="question-desc-id">{{vm.currentQuestionObj.desc}}</div>
+        </div>
+    </div>
+</article>
+
+<!-- 引入代码演示模板 -->
+<js-code-component  js-code-info-obj="vm.jsCodeInfoObj"></js-code-component>

@@ -15,15 +15,18 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" ng-class="{'active':vm.afterClickLaptop.activeState}" ng-click="vm.ClickLaptop()">桌面端</a>
+                    <a class="nav-link" href="#" ng-class="{'active':vm.afterClickLaptop.activeState}"
+                        ng-click="vm.ClickLaptop()">桌面端</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" ng-class="{'active':vm.afterClickMobile.activeState}" ng-click="vm.ClickMobile()">移动端</a>
+                    <a class="nav-link" href="#" ng-class="{'active':vm.afterClickMobile.activeState}"
+                        ng-click="vm.ClickMobile()">移动端</a>
                 </li>
             </ul>
         </div>
-        <div class="card-body page-show-card-body-class">    
-            <iframe class="col-md-12 page-show-iframe-class" src={{vm.currentQuestionObj.pageUrl}} ng-style="vm.pageShowIframeStyle"></iframe>
+        <div class="card-body page-show-card-body-class">
+            <iframe class="col-md-12 page-show-iframe-class" src={{vm.currentQuestionObj.pageUrl}}
+                ng-style="vm.pageShowIframeStyle"></iframe>
         </div>
     </div>
 </article>
@@ -34,12 +37,16 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href={{vm.currentQuestionObj.pageUrl}}>{{vm.currentQuestionObj.pageUrl}}</a>
+                    <a class="nav-link active"
+                        href={{vm.currentQuestionObj.pageUrl}}>{{vm.currentQuestionObj.pageUrl}}</a>
                 </li>
             </ul>
         </div>
         <div class="card-body">
-            <pre id="source-code-id"></pre>
+            <pre class="highlight" id="source-code-id"></pre>
         </div>
     </div>
 </article>
+
+
+

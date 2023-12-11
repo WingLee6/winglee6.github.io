@@ -1,8 +1,8 @@
-function Solvetion(n) {
-  var resultStr = ''
+function Solution(n) {
+  var strResult = ''
   for (let i = 1; i <= n; i++) {
-    resultStr += i+'\n'
+    strResult += i+'\n'
   }
-  return resultStr
+  return strResult
 }
   

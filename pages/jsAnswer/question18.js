@@ -1,8 +1,10 @@
-function Solvetion(n) {
-  var resultStr = ''
-  for (let i = 1; i <= n; i++) {
-    resultStr += i+'\n'
-  }
-  return resultStr
+function Solution(arr) {
+  var resultList = arr.filter(function (num) {
+    return num % 2 !== 0;
+  }).map(function (odd) {
+    return odd * odd;
+  });
+
+  return resultList;
 }
   

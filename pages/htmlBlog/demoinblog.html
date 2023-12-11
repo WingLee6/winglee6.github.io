@@ -1,3 +1,52 @@
-
 <h1>测试内容in blog</h1>
 <!-- <code-template-component></code-template-component> -->
+
+<article class="col-md-10 offset-md-1 py-3">
+    <!-- 提示框 -->
+    <div class="alert alert-primary" role="alert">
+        提示的内容
+    </div>
+    
+    <!-- JS代码演示内容 -->
+    <div class="row align-items-center">
+        <!-- 左侧代码框 -->
+        <div class="col-7" >
+            <div class="card" style="min-height: 500px;">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href='./index.html'>代码框</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <pre id="source-code-id">
+                    </pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧输入和输出框 -->
+        <div class="col-5">
+            <!-- 输入建议 -->
+            <div class="input-group p-1">
+                <span class="input-group-text">输入建议</span>
+                <input type="text" class="form-control" placeholder="输入建议实例" aria-label="inputAdvice" aria-describedby="input-advice" value="[1, 2, 3, 4, 5]" disabled>
+            </div>
+            <!-- 输入框 -->
+            <div class="input-group p-1" style="min-height: 200px;">
+                <span class="input-group-text">输入框</span>
+                <textarea class="form-control" aria-label="input-area" ng-model="vm.inputParam"></textarea>
+                <button class="btn btn-outline-secondary" type="button" id="button-addon"
+                    ng-click="vm.SubmitParameter()">提交</button>
+            </div>
+            <!-- JS输出框 -->
+            <div class="input-group p-1" style="min-height: 200px;">
+                <span class="input-group-text">输出框</span>
+                <textarea class="form-control js-answer-output-area-class" aria-label="output-area" ng-model="vm.outputResult"
+                    disabled>
+                </textarea>
+            </div>
+        </div>
+    </div>
+</article>
