@@ -1,0 +1,48 @@
+<!-- 提示框 -->
+<div ng-if="vm.htmlCodeInfoObj.tipText.length!=0">
+    <article class="col-md-10 offset-md-1">
+        <!-- 提示框 -->
+        <div class="alert alert-primary" role="alert">
+            {{vm.htmlCodeInfoObj.tipText}}
+        </div>
+    </article>
+</div>
+
+
+<!-- 效果演示框 -->
+<article class="col-md-10 offset-md-1">
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="" ng-class="{'active':vm.afterClickLaptop.activeState}"
+                        ng-click="vm.ClickLaptop()">桌面端</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" ng-class="{'active':vm.afterClickMobile.activeState}"
+                        ng-click="vm.ClickMobile()">移动端</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body page-show-card-body-class">
+            <iframe class="col-md-12 page-show-iframe-class" src={{vm.htmlCodeInfoObj.sourceCodeUrl}} ng-style="vm.pageShowIframeStyle"></iframe>
+        </div>
+    </div>
+</article>
+
+<!-- 代码框 -->
+<article class="col-md-10 offset-md-1 py-3">
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href={{vm.htmlCodeInfoObj.sourceCodeUrl}}>{{vm.htmlCodeInfoObj.sourceCodeUrl}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <pre id="source-codeBlock-id" style="max-height: 400px;">
+            </pre>
+        </div>
+    </div>
+</article>

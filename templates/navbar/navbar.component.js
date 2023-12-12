@@ -4,6 +4,7 @@ app.component("navbarComponent", {
     templateUrl: './templates/navbar/navbar.html',
     bindings:{
         currentQuestionObj: '=',
+        htmlCodeInfoObj: '=',
         jsCodeInfoObj: '=',
     },
     controller: function($scope) {
@@ -58,24 +59,18 @@ app.component("navbarComponent", {
         // questionIndex 为question编号 
         this.SelectQuestionIndex = function (topicIndex, questionIndex) {
             console.log("navbarComponent.SelectQuestionIndex")
-            // 网页模板设置
-            // this.currentPageTemplateObj.isShowedCssAnswerArea = true;
-            // this.currentPageTemplateObj.isShowedJsAnswerArea = false;
             
             // 题号内容
             this.currentQuestionObj.title = 'Practice1 - 题目' + topicIndex + ' - question' + questionIndex
             // 题目内容
             this.currentQuestionObj.desc = this.questionDescObj['topic3List'][questionIndex-1]
-            // 题目代码实现链接
-            this.currentQuestionObj.pageUrl = './pages/topic' + topicIndex + '/question' + questionIndex + '/index.html'
 
-            fetch('./pages/topic' + topicIndex + '/question' + questionIndex + '/index.html')
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('source-code-id').innerText = html;
-                    this.strSourceCode = html
-                })
-                .catch(error => console.error('Error fetching source code:', error));
+
+            // 题目代码实现链接
+            this.htmlCodeInfoObj.sourceCodeUrl = './pages/cssAnswer/question' + questionIndex + '/index.html'
+            // 设置页面读取标记
+            this.htmlCodeInfoObj.readOrNot = false
+
         }
 
 
@@ -90,23 +85,16 @@ app.component("navbarComponent", {
             this.currentQuestionObj.title = 'JS题目 - question' + questionIndex
             // 题目内容
             this.currentQuestionObj.desc = this.questionDescObj['jsQuestionList'][questionIndex-1][0]
+
+
             // 获取题目建议参数
             this.jsCodeInfoObj.demoParam = this.questionDescObj['jsQuestionList'][questionIndex-1].slice(1)
-            // 获取函数参数类型
-            // this.jsCodeInfoObj.paramsType = this.jsCodeInfoObj.demoParam.map(item => typeof item)
+            // 设置页面读取标记
             this.jsCodeInfoObj.readOrNot = false
-
             // 题目代码实现链接
             this.jsCodeInfoObj.sourceCode = ''
             this.jsCodeInfoObj.sourceCodeUrl = './pages/jsAnswer/question' + questionIndex + '.js'
 
-            fetch(this.jsCodeInfoObj.sourceCodeUrl)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('source-code-id').innerText = html;
-                    this.strSourceCode = html
-                })
-                .catch(error => console.error('Error fetching source code:', error));
         }
 
 

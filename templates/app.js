@@ -15,7 +15,7 @@ app.config(function ($routeProvider) {
         }).
         when('/cssAnswer', {
             // css答案模板
-            template: '<css-answer-component current-question-obj="currentQuestionObj"></css-answer-component>',
+            templateUrl: './pages/htmlAnswerPage.html',
         }).
         when('/jsAnswer', {
             // js答案模板

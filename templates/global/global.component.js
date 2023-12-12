@@ -10,6 +10,15 @@ app.component("globalComponent", {
             pageUrl: '#',
         };
 
+        this.htmlCodeInfoObj = {
+            tipText: '',
+            // 源码 或 js文件路径
+            sourceCode: '',
+            sourceCodeUrl: '#',
+            // 是否被读取
+            readOrNot: true
+        }
+
         this.jsCodeInfoObj = {
             tipText: '',
             // 参数输入建议实例, 通过typeof获取参数类型

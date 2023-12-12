@@ -3,7 +3,7 @@
     display: flex;
 }
 
-/* 展示框样式 */
+/* 页面展示框样式 */
 .page-show-card-body-class {
     background-color: var(--bs-dark-border-subtle);
 }
@@ -17,7 +17,23 @@
     /* max-width: 600px; */
 }
 
-/*  */
-.js-answer-output-area-class {
-    height: 200px;
+
+/* 代码块样式 */
+pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: auto;
+}
+
+/* 代码样式 */
+code {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+/* 高亮关键词样式 */
+.highlight {
+    color: #d73a49;
+    font-weight: bold;
 }

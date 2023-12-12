@@ -8,18 +8,14 @@ app.component("jsCodeComponent", {
     controller: function ($scope, $rootScope) {
         // 输出结果
         this.strOutputResult = '暂无'
-        
-        // 使用的JS信息并处理
-        this.formattedJsInfoObj = {
-            tipText: '',
-            inputParam: [],
-            paramType: [],
-            inputParamToString: []
-        }
+        // 记录下参数的数据类型, 即使改变输入变量也可以用此完成参数类型校验
+        this.recordParamTypeList = []
+
+
 
         this.$onInit = function () {
             console.log("jsCodeComponent - onInit")
-            this.formattedJsInfoObj.tipText = '没有参数需要输入.'
+            this.jsCodeInfoObj.tipText = '无提示信息.'
         }
 
         this.$doCheck = function () {
@@ -30,27 +26,35 @@ app.component("jsCodeComponent", {
 
                 // 提示信息处理
                 if (this.jsCodeInfoObj.tipText.length!=0) {
-                    this.formattedJsInfoObj.tipText = this.jsCodeInfoObj.tipText
+                    this.jsCodeInfoObj.tipText = this.jsCodeInfoObj.tipText
                 } else if (this.jsCodeInfoObj.demoParam.length==0) {
-                    this.formattedJsInfoObj.tipText = '没有参数需要输入.'
-                } else {
-                    this.formattedJsInfoObj.tipText = '无提示信息.'
+                    this.jsCodeInfoObj.tipText = '没有参数需要输入.'
                 }
                 
-                this.formattedJsInfoObj.inputParam = angular.copy(this.jsCodeInfoObj.demoParam)
-                this.formattedJsInfoObj.paramType = angular.copy(this.jsCodeInfoObj.demoParam.map(item => typeof item))
-                this.formattedJsInfoObj.inputParamToString = angular.copy(this.jsCodeInfoObj.demoParam.map(arr => JSON.stringify(arr)))
+                // 结果需要字符化JSON.stringify， 否则数组在前端不显示[]
+                this.jsCodeInfoObj.demoParam = this.jsCodeInfoObj.demoParam.map(arr => JSON.stringify(arr))
+
+                // 记录下参数的数据类型, 即使改变输入变量也可以用此完成参数类型校验
+                this.recordParamTypeList = angular.copy(this.jsCodeInfoObj.demoParam.map(item => typeof item))
+                // this.formattedJsInfoObj.inputParamToString = angular.copy(this.jsCodeInfoObj.demoParam.map(arr => JSON.stringify(arr)))
+
+                // 插入js代码到代码框
+                fetch(this.jsCodeInfoObj.sourceCodeUrl)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById('source-codeBlock-id').innerHTML = FormatHightlight(html)
+                    })
+                    .catch(error => console.error('Error fetching source code:', error));
                 
                 // 输出结果归零
                 this.strOutputResult = '暂无'
             }
-            
-        };
+        }
 
         // 提交参数 
         this.SubmitParameter = function () {
             // 输入内容进行格式化
-            this.paramsList = FormatParameter(this.formattedJsInfoObj.inputParamToString, this.formattedJsInfoObj.paramType)
+            this.paramsList = FormatParameter(this.jsCodeInfoObj.demoParam, this.recordParamTypeList)
 
             // 使用示例
             this.LoadScript('.' + this.jsCodeInfoObj.sourceCodeUrl)
@@ -126,7 +130,6 @@ app.component("jsCodeComponent", {
 
             return formattedList;
         }
-
 
 
     }
