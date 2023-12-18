@@ -1,1 +1,109 @@
 <h1>测试页面</h1>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- CDN -->
+  <link href="https://cdn.staticfile.org/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <title>Shopping Cart</title>
+</head>
+
+<body>
+
+  <div class="container mt-4">
+      <h2>Shopping Cart</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="cart-body">
+          
+          <!-- Cart items will be added here dynamically -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"><strong>Total:</strong></td>
+            <td id="total-price">$0.00</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <!-- 输入商品 -->
+      <div class="form-group">
+        <label for="productName">Product Name:</label>
+        <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+      </div>
+      <div class="form-group">
+        <label for="productPrice">Product Price:</label>
+        <input type="number" class="form-control" id="productPrice" placeholder="Enter product price">
+      </div>
+      
+      <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+      
+  </div>
+
+  <script>
+    var cart = [];
+
+    function addToCart() {
+      var productName = document.getElementById('productName').value;
+      var productPrice = parseFloat(document.getElementById('productPrice').value);
+
+      if (productName && !isNaN(productPrice)) {
+        var item = { name: productName, price: productPrice };
+        cart.push(item);
+        updateCart();
+        clearInputs();
+      }
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    function updateCart() {
+      var cartBody = document.getElementById('cart-body');
+      var totalPrice = 0;
+
+      // Clear existing cart items
+      while (cartBody.firstChild) {
+        cartBody.removeChild(cartBody.firstChild);
+      }
+
+      // Add new cart items
+      cart.forEach(function (item, index) {
+        var row = cartBody.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+
+        cell1.innerHTML = item.name;
+        cell2.innerHTML = '$' + item.price.toFixed(2);
+        cell3.innerHTML = '<button class="btn btn-danger btn-sm" onclick="removeFromCart(' + index + ')">Remove</button>';
+
+        totalPrice += item.price;
+      });
+
+      // Update total price
+      document.getElementById('total-price').textContent = '$' + totalPrice.toFixed(2);
+    }
+
+    function clearInputs() {
+      document.getElementById('productName').value = '';
+      document.getElementById('productPrice').value = '';
+    }
+  </script>
+
+</body>
+
+</html>
