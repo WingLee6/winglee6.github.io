@@ -14,7 +14,8 @@ app.component("globalComponent", {
             tipText: '',
             // 源码 或 js文件路径
             sourceCode: '',
-            sourceCodeUrl: '#',
+            // sourceCodeUrl: '#',
+            sourceCodeUrl: './pages/demoPageAnswer/question1.html',
             // 是否被读取
             readOrNot: true
         }

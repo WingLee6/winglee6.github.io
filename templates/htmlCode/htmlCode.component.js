@@ -42,7 +42,6 @@ app.component("htmlCodeComponent", {
                     .then(response => response.text())
                     .then(html => {
                         document.getElementById('source-codeBlock-id').innerText = html
-                        // document.getElementById('source-codeBlock-id').innerHTML = FormatHightlight(html)
                     })
                     .catch(error => console.error('Error fetching source code:', error));
                 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>实时时钟</title>  
+</head>  
+<body>  
+    <!-- 时间显示 -->
+    <h1>当前的时间为</h1>
+    <h1 id="clock">00:00:00</h1>  
+  
+    <script>  
+        function UpdateClock() {  
+            var now = new Date();  
+            var hours = now.getHours();  
+            var minutes = now.getMinutes();  
+            var seconds = now.getSeconds();  
+  
+            // 确保小时、分钟和秒数始终为两位数  
+            hours = hours < 10 ? "0" + hours : hours;  
+            minutes = minutes < 10 ? "0" + minutes : minutes;  
+            seconds = seconds < 10 ? "0" + seconds : seconds;  
+  
+            // 更新显示的时间  
+            document.getElementById("clock").textContent = hours + ":" + minutes + ":" + seconds;  
+        }  
+  
+        // 每秒更新一次时钟  
+        setInterval(UpdateClock, 1000);  
+    </script>  
+</body>  
+</html>

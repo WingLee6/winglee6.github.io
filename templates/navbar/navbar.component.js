@@ -11,7 +11,7 @@ app.component("navbarComponent", {
         
         // 题干信息对象
         this.questionDescObj = {
-            topic3List: [
+            cssQuestionList: [
                 '创建一个完整的响应式网站，包含多个页面，例如首页、关于我们、联系我们等。确保整个网站在不同设备上都有良好的布局和样式。',
                 '实现一个带有动画效果的导航菜单，当用户滚动页面时，菜单可以固定在页面顶部，并且在滚动时有过渡效果。',
                 '创建一个复杂的表单，包含各种输入元素，如日期选择器、滑块、下拉框等，并使用CSS美化表单元素的样式。',
@@ -45,9 +45,26 @@ app.component("navbarComponent", {
                 ['编写一个函数，接受一个数组参数，返回数组中的所有奇数的平方的新数组。', [1, 2, 3, 4, 5]],
                 ['编写一个函数，接受一个字符串参数，反转字符串中的每个单词并返回新字符串（不反转单词的顺序）。', "Hello World"],
                 ['编写一个函数，接受一个数组参数，返回数组中的所有元素之积。', [1, 2, 3, 4, 5]]
+            ], 
+            demoPagesList: [ 
+                ['购物车功能', ['创建一个购物车，能够添加商品、删除商品、计算总价等功能', '实现一个函数用于添加商品到购物车，并计算购物车中商品的总价', '实现一个函数用于删除购物车中的商品', '在页面上显示购物车的内容和总价']], 
+                ['单词计数', ['编写一个函数 `countWords(str)`，接受一个字符串参数 `str`', '统计字符串中每个单词出现的次数，并将结果保存在一个对象中', '返回包含单词及对应次数的对象'], ['Hello world, this is a test string.']],
+                ['时钟', ['创建一个实时时钟，显示当前时间，并每秒更新一次']], 
+                ['图片轮播', ['创建一个包含多张图片URL的数组', '实现一个函数用于自动轮播图片，并设置轮播的时间间隔', '在页面上显示当前轮播的图片，并包含左右箭头用于手动切换图片']],
+                ['拖拽效果', ['创建一个元素，使其可拖拽，并通过鼠标拖动该元素到指定位置']]
+                ['本地存储', ['创建一个待办事项列表，用户可以添加和删除事项', '使用本地存储(localStorage或sessionStorage)保存数据，以便刷新页面后数据不丢失']], 
+                ['密码强度检查', ['编写一个函数 `checkPasswordStrength(password)`，接受一个密码参数 `password`', '根据密码复杂度给出评分，例如弱、中等、强等级，并返回评分结果']],
+                ['异步数据请求', ['使用异步函数从一个API获取数据，并将数据显示在页面上']],
+                ['模态框', ['创建一个模态框组件，包含一个按钮或链接用于触发弹出模态框', '点击按钮或链接时，弹出模态框显示内容，并包含关闭按钮']],
+                ['游戏：猜数字', ['编写一个猜数字游戏，随机生成一个1到100之间的整数', '用户通过输入数字来猜测，给出猜测结果：太大、太小或猜对了', '提示用户猜测次数，直到猜对为止']]
             ]
             
         }
+
+
+
+
+
         
         this.$onInit = function() {
             console.log("navbarComponent - onInit")
@@ -57,20 +74,18 @@ app.component("navbarComponent", {
         // 适用css题目
         // topicIndex 为题目编号
         // questionIndex 为question编号 
-        this.SelectQuestionIndex = function (topicIndex, questionIndex) {
+        this.SelectCssQuestionIndex = function (questionIndex) {
             console.log("navbarComponent.SelectQuestionIndex")
             
             // 题号内容
-            this.currentQuestionObj.title = 'Practice1 - 题目' + topicIndex + ' - question' + questionIndex
+            this.currentQuestionObj.title = 'CSS题目 - question' + questionIndex
             // 题目内容
-            this.currentQuestionObj.desc = this.questionDescObj['topic3List'][questionIndex-1]
-
+            this.currentQuestionObj.desc = this.questionDescObj['cssQuestionList'][questionIndex-1]
 
             // 题目代码实现链接
             this.htmlCodeInfoObj.sourceCodeUrl = './pages/cssAnswer/question' + questionIndex + '/index.html'
             // 设置页面读取标记
             this.htmlCodeInfoObj.readOrNot = false
-
         }
 
 
@@ -94,7 +109,38 @@ app.component("navbarComponent", {
             // 题目代码实现链接
             this.jsCodeInfoObj.sourceCode = ''
             this.jsCodeInfoObj.sourceCodeUrl = './pages/jsAnswer/question' + questionIndex + '.js'
+        }
 
+
+        // 题目选择
+        // 适用示例题目
+        // 
+        // strTemplateFlag 标记用模板类型 js模板'js' |  html模板'html'
+        this.SelectDemoPageQuestionIndex = function (questionIndex, strTemplateFlag) {
+            console.log("navbarComponent.SelectDemoPageQuestionIndex")
+
+            // 题号内容
+            this.currentQuestionObj.title = '示例题目 - question' + questionIndex + ': ' + this.questionDescObj.demoPagesList[questionIndex-1][0]
+            // 题目内容
+            this.currentQuestionObj.desc = this.questionDescObj.demoPagesList[questionIndex-1][1].map((item, index) => (index+1) + '. ' + item+';\n').join('')
+
+            
+            
+            if (strTemplateFlag == 'html') {
+                // 题目代码实现链接pages\demoPageAnswer\question1.html
+                this.htmlCodeInfoObj.sourceCodeUrl = './pages/demoPageAnswer/question' + questionIndex + '.html'
+                // 设置页面读取标记
+                this.htmlCodeInfoObj.readOrNot = false
+            } else if (strTemplateFlag == 'js') {
+                // 获取题目建议参数
+                this.jsCodeInfoObj.demoParam = this.questionDescObj.demoPagesList[questionIndex-1][2]
+                // 设置页面读取标记
+                this.jsCodeInfoObj.readOrNot = false
+                // 题目代码实现链接
+                this.jsCodeInfoObj.sourceCode = ''
+                this.jsCodeInfoObj.sourceCodeUrl = './pages/demoPageAnswer/question' + questionIndex + '.js'
+            }
+            
         }
 
 
