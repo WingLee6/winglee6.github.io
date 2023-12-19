@@ -53,36 +53,43 @@ app.component("jsCodeComponent", {
 
         // 提交参数 
         this.SubmitParameter = function () {
-            // 输入内容进行格式化
-            this.paramsList = FormatParameter(this.jsCodeInfoObj.demoParam, this.recordParamTypeList)
+            try {
+                // 输入内容进行格式化
+                this.paramsList = FormatParameter(this.jsCodeInfoObj.demoParam, this.recordParamTypeList)
+                // 使用示例
+                this.LoadScript('.' + this.jsCodeInfoObj.sourceCodeUrl)
+                    .then(() => {
+                        
+                        switch (this.paramsList.length) {
+                            case 1:
+                                this.strOutputResult = JSON.stringify(Solution(this.paramsList[0]))
+                                // 结果需要字符化JSON.stringify， 否则数组在前端不显示[]
+                                break;
+                            case 2:
+                                this.strOutputResult = JSON.stringify(Solution(this.paramsList[0], this.paramsList[1]))
+                                break;
+                            case 3:
+                                this.strOutputResult = JSON.stringify(Solution(this.paramsList[0], this.paramsList[1], this.paramsList[2]))
+                                break;
+                            case 4:
+                                this.strOutputResult = JSON.stringify(Solution(this.paramsList[0], this.paramsList[1], this.paramsList[2], this.paramsList[3]))
+                                break;
+                            default:
+                                alert('参数超限(>4个), 需该代码')
+                        }
+                
+                        // console.log(this.strOutputResult)
+                        $scope.$apply();
+                    })
+                    .catch(error => {
+                        console.error('Script loading failed:', error);
+                    });
+            } catch (error) {
+                this.strOutputResult = "捕获到错误:\n" + error
+            }
+            
 
-            // 使用示例
-            this.LoadScript('.' + this.jsCodeInfoObj.sourceCodeUrl)
-                .then(() => {
-                    switch (this.paramsList.length) {
-                        case 1:
-                            this.strOutputResult = JSON.stringify(Solution(this.paramsList[0]))
-                            // 结果需要字符化JSON.stringify， 否则数组在前端不显示[]
-                            break;
-                        case 2:
-                            this.strOutputResult = JSON.stringify(Solution(this.paramsList[0], this.paramsList[1]))
-                            break;
-                        case 3:
-                            this.strOutputResult = JSON.stringify(Solution(this.paramsList[0], this.paramsList[1], this.paramsList[2]))
-                            break;
-                        case 4:
-                            this.strOutputResult = JSON.stringify(Solution(this.paramsList[0], this.paramsList[1], this.paramsList[2], this.paramsList[3]))
-                            break;
-                        default:
-                            alert('参数超限(>4个), 需该代码')
-                    }
-
-                    console.log(this.strOutputResult)
-                    $scope.$apply();
-                })
-                .catch(error => {
-                    console.error('Script loading failed:', error);
-                });
+            
         }
 
         // 加载js文件

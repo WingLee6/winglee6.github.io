@@ -15,10 +15,7 @@ app.component("globalComponent", {
             // 源码 或 js文件路径
             sourceCode: '',
             sourceCodeUrl: '#',
-<<<<<<< Updated upstream
-=======
             // sourceCodeUrl: './pages/demoPageAnswer/question1.html',
->>>>>>> Stashed changes
             // 是否被读取
             readOrNot: true
         }
