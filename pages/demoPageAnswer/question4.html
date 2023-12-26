@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Carousel</title>
+  <style>
+    #carousel {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    #imageContainer {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-image-class {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    #prevBtn, #nextBtn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #fff;
+    }
+
+    #prevBtn {
+      left: 10px;
+    }
+
+    #nextBtn {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="carousel">
+  <div id="imageContainer"></div>
+  <button id="prevBtn" onclick="ChangeSlide(-1)"><</button>
+  <button id="nextBtn" onclick="ChangeSlide(1)">></button>
+</div>
+
+<script>
+
+    // 图片素材
+    var images = [
+        'https://img1.baidu.com/it/u=3712997108,442011921&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1703696400&t=f7aee5ef326c0b776a6bf7bc259da0fb',
+        'https://img1.baidu.com/it/u=481689849,3217240113&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1703696400&t=b94c7a776cd8cc60a17971e907293f0e',
+        'https://img0.baidu.com/it/u=2020518972,2077284106&fm=253&app=120&size=w931&n=0&f=JPEG&fmt=auto?sec=1703696400&t=7da600133999a99d1ba647a52606d293'
+    ]
+
+    // 当前图片, 默认为0
+    var nCurrentSlide = 0
+    // 切换间隔时间
+    var slideInterval = setInterval(NextSlide, 3000) 
+
+    // 自动切换下一个图片
+    function NextSlide() {
+        nCurrentSlide = (nCurrentSlide + 1) % images.length
+        UpdateCarousel()
+    }
+
+    // 切换图片
+    function ChangeSlide(direction) {
+        nCurrentSlide = (nCurrentSlide + direction + images.length) % images.length
+        UpdateCarousel()
+    }
+
+    // 更新图片
+    function UpdateCarousel() {
+        var imageContainer = document.getElementById('imageContainer')
+        imageContainer.style.transform = 'translateX(' + (-nCurrentSlide * 100) + '%)'
+    }
+
+    // 初始化
+    function init() {
+        var imageContainer = document.getElementById('imageContainer')
+
+        images.forEach(function (imageUrl) {
+            var imageElement = document.createElement('img')
+            imageElement.src = imageUrl
+            imageElement.className = 'carousel-image-class'
+            imageContainer.appendChild(imageElement)
+        })
+
+        UpdateCarousel()
+    }
+
+    init()
+</script>
+
+</body>
+</html>

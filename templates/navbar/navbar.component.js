@@ -51,7 +51,7 @@ app.component("navbarComponent", {
                 ['单词计数', ['编写一个函数 `countWords(str)`，接受一个字符串参数 `str`', '统计字符串中每个单词出现的次数，并将结果保存在一个对象中', '返回包含单词及对应次数的对象'], ['Hello world, this is a test string.']],
                 ['时钟', ['创建一个实时时钟，显示当前时间，并每秒更新一次']], 
                 ['图片轮播', ['创建一个包含多张图片URL的数组', '实现一个函数用于自动轮播图片，并设置轮播的时间间隔', '在页面上显示当前轮播的图片，并包含左右箭头用于手动切换图片']],
-                ['拖拽效果', ['创建一个元素，使其可拖拽，并通过鼠标拖动该元素到指定位置']]
+                ['拖拽效果', ['创建一个元素，使其可拖拽，并通过鼠标拖动该元素到指定位置']],
                 ['本地存储', ['创建一个待办事项列表，用户可以添加和删除事项', '使用本地存储(localStorage或sessionStorage)保存数据，以便刷新页面后数据不丢失']], 
                 ['密码强度检查', ['编写一个函数 `checkPasswordStrength(password)`，接受一个密码参数 `password`', '根据密码复杂度给出评分，例如弱、中等、强等级，并返回评分结果']],
                 ['异步数据请求', ['使用异步函数从一个API获取数据，并将数据显示在页面上']],
@@ -114,12 +114,12 @@ app.component("navbarComponent", {
 
         // 题目选择
         // 适用示例题目
-        // 
         // strTemplateFlag 标记用模板类型 js模板'js' |  html模板'html'
         this.SelectDemoPageQuestionIndex = function (questionIndex, strTemplateFlag) {
             console.log("navbarComponent.SelectDemoPageQuestionIndex")
 
             // 题号内容
+            console.log(this.questionDescObj.demoPagesList)
             this.currentQuestionObj.title = '示例题目 - question' + questionIndex + ': ' + this.questionDescObj.demoPagesList[questionIndex-1][0]
             // 题目内容
             this.currentQuestionObj.desc = this.questionDescObj.demoPagesList[questionIndex-1][1].map((item, index) => (index+1) + '. ' + item+';\n').join('')

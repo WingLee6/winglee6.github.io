@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    #drag-element-id {
+      width: 100px;
+      height: 100px;
+      background-color: #7c34db;
+      color: #fff;
+      text-align: center;
+      line-height: 100px;
+      cursor: move;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="drag-element-id" >移动方框</div>
+
+  <script>
+    var dragItemElem = document.getElementById('drag-element-id');
+
+    dragItemElem.addEventListener('mousedown', function (e) {
+      // 记录坐标
+      var offsetX = e.clientX - dragItemElem.getBoundingClientRect().left;
+      var offsetY = e.clientY - dragItemElem.getBoundingClientRect().top;
+
+      // 移动
+      function MoveElement(e) {
+        var x = e.clientX - offsetX;
+        var y = e.clientY - offsetY;
+
+        dragItemElem.style.left = x + 'px';
+        dragItemElem.style.top = y + 'px';
+      }
+
+      // 放置元素
+      // 取消监听
+      function ReleaseElement() {
+        document.removeEventListener('mousemove', MoveElement);
+        document.removeEventListener('mouseup', ReleaseElement);
+      }
+
+      document.addEventListener('mousemove', MoveElement);
+      document.addEventListener('mouseup', ReleaseElement);
+    });
+  </script>
+
+</body>
+
+</html>
