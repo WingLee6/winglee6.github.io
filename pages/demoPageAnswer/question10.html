@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜数字游戏</title>
+</head>
+
+<body>
+
+    <script>
+        // 生成1到100之间的随机整数
+        var secretNumber = Math.floor(Math.random() * 100) + 1;
+
+        // 提示用户猜数字
+        function guessNumber(nMin, nMax) {
+            // 获取用户输入的数字
+            var userGuess = prompt("猜一个" + nMin + "到" + nMax + "之间的数字:");
+
+            // 将用户输入的字符串转换为数字
+            var guess = parseInt(userGuess);
+
+            // 检查猜测结果
+            if (isNaN(guess)) {
+                alert("请输入有效的数字！");
+                guessNumber(nMin, nMax); // 递归调用，继续猜测
+            } else if (guess < nMin || guess > nMax) {
+                alert("请输入" + nMin + "到" + nMax + "之间的数字！");
+                guessNumber(nMin, nMax); // 递归调用，继续猜测
+            } else if (guess < secretNumber) {
+                alert("太小了，再试一次！范围更新为 " + (guess + 1) + " 到 " + nMax);
+                guessNumber((guess + 1), nMax); // 递归调用，继续猜测
+            } else if (guess > secretNumber) {
+                alert("太大了，再试一次！范围更新为 " + nMin + " 到 " + (guess - 1));
+                guessNumber(nMin, (guess + 1)); // 递归调用，继续猜测
+            } else {
+                alert("恭喜你猜对了！正确数字是 " + secretNumber);
+            }
+        }
+        // 开始猜数字游戏
+        guessNumber(1, 100);
+    </script>
+
+</body>
+
+</html>
