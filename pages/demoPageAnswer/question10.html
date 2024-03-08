@@ -12,6 +12,7 @@
     <script>
         // 生成1到100之间的随机整数
         var secretNumber = Math.floor(Math.random() * 100) + 1;
+        console.log(secretNumber)
 
         // 提示用户猜数字
         function guessNumber(nMin, nMax) {
@@ -33,7 +34,7 @@
                 guessNumber((guess + 1), nMax); // 递归调用，继续猜测
             } else if (guess > secretNumber) {
                 alert("太大了，再试一次！范围更新为 " + nMin + " 到 " + (guess - 1));
-                guessNumber(nMin, (guess + 1)); // 递归调用，继续猜测
+                guessNumber(nMin, (guess - 1)); // 递归调用，继续猜测
             } else {
                 alert("恭喜你猜对了！正确数字是 " + secretNumber);
             }
