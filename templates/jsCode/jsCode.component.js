@@ -11,8 +11,6 @@ app.component("jsCodeComponent", {
         // 记录下参数的数据类型, 即使改变输入变量也可以用此完成参数类型校验
         this.recordParamTypeList = []
 
-
-
         this.$onInit = function () {
             console.log("jsCodeComponent - onInit")
             this.jsCodeInfoObj.tipText = '无提示信息.'
